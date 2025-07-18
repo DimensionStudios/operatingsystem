@@ -1,3 +1,2 @@
 # operatingsystem
-OS lol
-hello this is a git push test
+Currently just runs a "Hello World!" function

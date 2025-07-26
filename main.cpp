@@ -3,14 +3,14 @@
 #include <print>
 
 int main() {
-    std::string name;
-    int age;
+    std::string username;
+    std::string age;
 
-    std::println("Name: ");
-    std::getline(std::cin, name);
+    std::print("Name: ");
+    std::getline(std::cin, username);
 
-    std::println("Age: ");
-    std::cin >> age;
+    std::print("Age: ");
+    std::getline(std::cin, age);
 
-    std::cout << "Your name is " << name << ". And you are " << age << " years old\n";
+    std::print("Your name is {}, and you are {} years old.\n", username, age);
 }

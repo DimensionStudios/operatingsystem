@@ -5,7 +5,7 @@ window = tk.Tk()
 window.title("Window with Wallpaper")
 window.geometry("2560x1440")
 
-image = Image.open("Assets/Wallpapers/defaultwallpaper.png")
+image = Image.open("Assets/Wallpapers/daytimeaurora.jpg")
 background_image = ImageTk.PhotoImage(image.resize((2560, 1440)))
 
 background_label = tk.Label(window, image=background_image)

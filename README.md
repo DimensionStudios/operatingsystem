@@ -1,7 +1,6 @@
 # operatingsystem
 RULES:  
     #use c++ 23  
-    #use g++ to compile  
     #run with clang  
     #compile down to asm if needed (bootloader)  
     #try to stick to one language  

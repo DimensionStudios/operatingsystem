@@ -1,5 +1,5 @@
 # Operating System
-# Rules
+## Rules
     * use c++ 23
     * run with clang
     * compile down to asm if needed (bootloader)

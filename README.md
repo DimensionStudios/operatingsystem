@@ -11,12 +11,7 @@ Do not use raw pointers unless it links to a C library, instead use smart pointe
 Once ready, we will only test the OS on a VM while on a call in case there is a big issue  
 
  
-## CPP TYPES  
-    static = in classes, do not need to make new class object  
-    const = can't be changed  
-    constexpr = made on boot  
-    constinit = initalised on compile  
-    consteval = evaluated at compile time  
-
+## TODO
+* Make ASM code run a c file
 
         ------------------------------------------------------------------------------------------------ 

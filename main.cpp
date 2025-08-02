@@ -1,16 +1,47 @@
 #include <iostream>
 #include <string>
 #include <print>
+#include <map>
 
 int main() {
-    std::string username;
-    std::string age;
+    bool isrunning = true;
+    std::map<std::string, std::string> myDictionary;
+    while (isrunning){
+        std::string loginsignup;
+        std::string newname;
+        std::string newpassword;
+        std::string nameinput;
+        std::string passinput;
+        
 
-    std::print("Name: ");
-    std::getline(std::cin, username);
+        std::print("Sign up or log in: ");
+        std::getline(std::cin, loginsignup);
 
-    std::print("Age: ");
-    std::getline(std::cin, age);
+        if (loginsignup == "sign up"){
+            std::print("Username: ");
+            std::getline(std::cin, newname);
+            std::print("Password: ");
+            std::getline(std::cin, newpassword);
+            myDictionary[newname] = newpassword;
+            std::println("Username: {}, Password: {}", newname, newpassword);
+        };
 
-    std::print("Your name is {}, and you are {} years old.\n", username, age);
+        if (loginsignup == "log in"){
+            std::print("Username: ");
+            std::getline(std::cin, nameinput);
+            std::print("Password: ");
+            std::getline(std::cin, passinput);
+            for (std::pair<std::string, std::string> pair : myDictionary){
+                if (nameinput == pair.first and passinput == pair.second){
+                    std::println("You're in!");
+                    isrunning = false;
+                    goto correct;
+                }              
+            }
+            std::println("wrong");
+            
+            correct: ;
+
+        };
+    }
 }

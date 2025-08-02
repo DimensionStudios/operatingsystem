@@ -4,6 +4,9 @@
 CODE_OFFSET equ 0x8
 DATA_OFFSET equ 0x10
 
+KERNEL_LOAD_SEG equ 0x1000
+KERNEL_START_ADDR equ 0x100000
+
 start:
 cli ; clear & disable interrups
 mov ax, 0x00
@@ -13,13 +16,28 @@ mov ss, ax
 mov sp, 0x7c00 ; mov sp to stack pointer
 sti ; Enable interrupts
 
+; Load Kernal (should probably write a driver to do this in the future)
+mov bx, KERNEL_LOAD_SEG
+mov dh, 0x00
+mov dl, 0x80 ; read from the first harddrive
+mov cl, 0x02
+mov ch, 0x00
+mov ah, 0x02 ; read
+mov al, 8 ; number of the kernel
+int 0x13
+
+jc disk_read_error
+
 load_PM:
 cli
 lgdt[gdt_desc]
 mov eax, cr0
 or al, 1 ; Set lower part of eax to 1(protected mode)
 mov cr0, eax ; Add protection mode to cr0
-jmp CODE_OFFSET:PMModeMain
+jmp CODE_OFFSET:PModeMain
+
+disk_read_error:
+hlt
 
 
 ; GDT (global descriptor table) https://wiki.osdev.org/Global_Descriptor_Table
@@ -37,10 +55,7 @@ db 11001111b ; Flags for 4 kib
 db 0x00 ; Base
 
 ; DATA SEGMENT
-; Set first 2 bytes as 0
-db 0x00000000
-db 0x00000000
-; Code segment descriptor
+; Data segment descriptor
 dw 0xFFFF ; Limit
 dw 0x0000 ; Base
 db 0x00 ; Base
@@ -56,7 +71,7 @@ dd gdt_start ; base address of GDT
 
 ; MAIN FUNCTION
 [BITS 32]
-PMModeMain:
+PModeMain:
 ; Set all these registers to DATA_OFFSET
 mov ax, DATA_OFFSET
 mov ds, ax
@@ -73,7 +88,8 @@ mov esp, ebp
 in al, 0x92
 or al, 2
 out 0x92, al
-jmp $
+
+jmp CODE_OFFSET:KERNEL_START_ADDR ; run kernel.c kernel_main function
 
 times 510 - ($ - $$) db 0 ; fill the 510 bytes that have to been used with 0
 

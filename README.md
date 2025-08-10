@@ -2,10 +2,11 @@
 ## Building
 ### Setup
 If you have make already then run:
-    make install_req_files
+
+        make install_req_files
 
 If you do not have make, than install it and run the command
- 
+
 ## Rules
 * Use c++ 23
 * Run with clang

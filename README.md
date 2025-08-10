@@ -1,11 +1,11 @@
 # Operating System
 ## Building
-### Linux Homebrew
-Install brew:
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-Install i686-elf-gcc:
-    brew install i686-elf-gcc
+### Setup
+If you have make already then run:
+    make install_req_files
 
+If you do not have make, than install it and run the command
+ 
 ## Rules
 * Use c++ 23
 * Run with clang

@@ -45,3 +45,9 @@ run_main:
 	mkdir -p build
 	clang++ --std=c++23 -o build/main main.cpp
 	./build/main
+
+install_req_files:
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
+	HOMEBREW_NO_INSTALL_CLEANUP=1
+	brew install i686-elf-gcc
+	@echo If you encounter errors that say "brew does not exist," set up brew using discription in terminal and run command again.
